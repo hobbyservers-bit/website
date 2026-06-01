@@ -3,7 +3,14 @@
   command = "npm run build"
   publish = "dist"
 
-# React Router — send all routes to index.html
+# Proxy /api/* → Railway so the browser never hits Railway directly (no CORS)
+[[redirects]]
+  from   = "/api/*"
+  to     = "https://hs-api-production-f37d.up.railway.app/api/:splat"
+  status = 200
+  force  = true
+
+# React Router — all other routes → index.html
 [[redirects]]
   from   = "/*"
   to     = "/index.html"
