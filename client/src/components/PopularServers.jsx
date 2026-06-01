@@ -16,7 +16,7 @@ function SkeletonCard() {
 }
 
 export default function PopularServers() {
-  const { data, loading } = useApi('/api/servers/popular');
+  const { data, loading } = useApi('/api/servers?sort=popular&limit=8');
   const [secRef, inView]  = useInView();
   const scrollRef         = useRef(null);
 
