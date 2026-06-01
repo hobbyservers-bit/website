@@ -18,5 +18,9 @@ services:
         sync: false
       - key: FRONTEND_URL
         sync: false
+      - key: HOBBYSERVERS_API_URL
+        value: http://31.56.65.76:25576
+      - key: HOBBYSERVERS_API_KEY
+        sync: false
       - key: PORT
         value: 3001

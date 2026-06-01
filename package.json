@@ -4,7 +4,7 @@
   "description": "React + Express + MySQL website for HobbyServers.",
   "main": "index.js",
   "scripts": {
-    "dev": "concurrently --names \"API,WEB\" --prefix-colors \"yellow,cyan\" \"npm run dev --prefix server\" \"npm run dev --prefix client\"",
+    "dev": "npm run dev --prefix client",
     "install:all": "npm install --prefix server && npm install --prefix client",
     "ship": "git add . && git commit -m \"deploy $(date '+%Y-%m-%d %H:%M')\" && git push"
   },

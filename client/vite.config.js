@@ -7,7 +7,7 @@ export default defineConfig({
     port: 5173,
     proxy: {
       '/api': {
-        target: 'http://localhost:3001',
+        target: 'https://hs-api-production-f37d.up.railway.app',
         changeOrigin: true,
       },
     },

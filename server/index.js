@@ -1,9 +1,13 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import { fileURLToPath } from 'url';
+import path from 'path';
 import apiRouter from './routes/api.js';
 
-dotenv.config();
+// Always load .env from the server/ directory, regardless of where node is invoked from
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+dotenv.config({ path: path.resolve(__dirname, '.env') });
 
 const app  = express();
 const PORT = process.env.PORT || 3001;
