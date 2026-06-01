@@ -55,7 +55,7 @@ router.get('/popular', async (req, res) => {
   try {
     const [rows] = await db.query(
       `${SERVER_SELECT}
-       WHERE ms.public = 1 AND ms.status = 'ONLINE'
+       WHERE ms.public = 1 AND ms.status IN ('ONLINE','STARTING')
        ORDER BY ms.rating_positive DESC
        LIMIT 8`
     );
