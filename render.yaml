@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: hobbyservers-api
+    runtime: node
+    rootDir: server
+    buildCommand: npm install
+    startCommand: node index.js
+    envVars:
+      - key: DB_HOST
+        sync: false
+      - key: DB_PORT
+        sync: false
+      - key: DB_USER
+        sync: false
+      - key: DB_PASS
+        sync: false
+      - key: DB_NAME
+        sync: false
+      - key: FRONTEND_URL
+        sync: false
+      - key: PORT
+        value: 3001

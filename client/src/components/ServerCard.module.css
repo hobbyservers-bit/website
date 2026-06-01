@@ -1,0 +1,127 @@
+.card {
+  background: #F4F4F2;
+  border-radius: 18px;
+  padding: 22px 22px 20px;
+  flex-shrink: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: transform 0.2s cubic-bezier(0.22,1,0.36,1),
+              box-shadow 0.2s cubic-bezier(0.22,1,0.36,1);
+  cursor: default;
+}
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.09);
+}
+
+/* ── Row 1: icon + name ──────────────────────── */
+.top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Real Minecraft texture — scale up crisp pixels */
+.blockIcon {
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  object-fit: contain;
+  border-radius: 4px;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+/* Solid color shown if texture fails to load */
+.blockFallback {
+  width: 36px;
+  height: 36px;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.name {
+  font-family: var(--font-heading);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--black);
+  line-height: 1.2;
+  /* truncate if needed */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ── Row 2: online ───────────────────────────── */
+.online {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 2px;
+}
+
+.onlineNum {
+  font-family: var(--font-heading);
+  font-size: 14px;
+  font-weight: 700;
+  color: #22c55e;
+}
+
+.onlineLabel {
+  font-size: 14px;
+  font-weight: 400;
+  color: #888;
+}
+
+/* ── MOTD ────────────────────────────────────── */
+.motd {
+  font-size: 14px;
+  font-weight: 400;
+  color: #333;
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin-top: 2px;
+}
+
+/* ── Address bar ─────────────────────────────── */
+.addressBar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #E8E8E5;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 12px;
+  margin-top: 4px;
+  cursor: pointer;
+  transition: background 0.15s;
+  text-align: left;
+  width: 100%;
+}
+.addressBar:hover { background: #DEDEDB; }
+.addressBar.copied { background: #dcfce7; }
+
+.addressText {
+  flex: 1;
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  color: #555;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.copyIcon {
+  color: #999;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  transition: color 0.15s;
+}
+.addressBar:hover .copyIcon { color: #555; }
+.copiedIcon { color: #22c55e; font-size: 14px; font-weight: 700; }

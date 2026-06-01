@@ -1,0 +1,144 @@
+/* Image ratio: 6060×1952 → height = width × 0.322                                */
+/* Width set to 130vw (overflows both sides). Height = 130vw × 0.322 = 41.9vw.    */
+/* bottom: -13vw clips the empty whitespace below the text.                        */
+/* Padding-bottom = 41.9vw - 13vw = ~29vw gives the footer the right height.      */
+
+.footer {
+  position: relative;
+  background: #EBEBEA;
+  overflow: hidden;
+  padding-top: 48px;
+  padding-bottom: 6vw;
+}
+
+/* ── Watermark image ────────────────────────────────────── */
+.watermark {
+  position: absolute;
+  bottom: -13vw;            /* clip empty whitespace at image bottom */
+  left: 50%;                /* anchor to center */
+  transform: translateX(-50%); /* pull back half the image width */
+  width: 130%;              /* wider than viewport — bleeds off both edges */
+  height: auto;
+  display: block;
+  pointer-events: none;
+  user-select: none;
+
+  /* white PNG background blends away against the footer gray */
+  mix-blend-mode: multiply;
+
+  /* top: 100% opacity → bottom: 10% opacity */
+  -webkit-mask-image: linear-gradient(to bottom, black 0%, rgba(0,0,0,0.10) 100%);
+  mask-image:         linear-gradient(to bottom, black 0%, rgba(0,0,0,0.10) 100%);
+}
+
+/* ── Inner content (sits on top of watermark) ───────────── */
+.inner {
+  position: relative;
+  z-index: 1;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 48px 24px;
+}
+
+/* ── Top row ────────────────────────────────────────────── */
+.top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+/* ── Logo ───────────────────────────────────────────────── */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.logoIcon {
+  width: 36px;
+  height: 36px;
+  border-radius: 9px;
+  object-fit: contain;
+}
+
+.logoText {
+  font-family: var(--font-heading);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--black);
+  letter-spacing: -0.02em;
+}
+
+/* ── Right column ───────────────────────────────────────── */
+.right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 16px;
+}
+
+/* ── Nav links ──────────────────────────────────────────── */
+.navLinks {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.navLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+  text-decoration: none;
+  transition: color 0.15s;
+}
+.navLink:hover { color: var(--black); }
+.navLink i { font-size: 13px; color: #555; }
+
+/* ── Social icons ───────────────────────────────────────── */
+.socials {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.socialIcon {
+  font-size: 17px;
+  color: #222;
+  text-decoration: none;
+  transition: color 0.15s, transform 0.15s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.socialIcon:hover { color: var(--black); transform: translateY(-2px); }
+
+/* ── Copyright ──────────────────────────────────────────── */
+.copyright {
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: #888;
+  text-align: right;
+}
+
+/* ── Responsive ─────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .footer  { padding-top: 36px; padding-bottom: 28vw; }
+  .inner   { padding: 0 24px 20px; }
+
+  .top {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 28px;
+  }
+
+  .right      { align-items: flex-start; }
+  .navLinks   { flex-direction: column; align-items: flex-start; gap: 14px; }
+  .copyright  { text-align: left; }
+}

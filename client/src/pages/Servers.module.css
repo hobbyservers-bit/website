@@ -1,0 +1,270 @@
+/* ── Hero ──────────────────────────────────────────────────── */
+.hero {
+  position: relative;
+  min-height: 54vh;
+  display: flex;
+  align-items: center;
+  padding: 120px 48px 80px;
+  overflow: hidden;
+}
+
+/* Background: reuse the header Minecraft screenshot */
+.heroBg {
+  position: absolute;
+  inset: 0;
+  background: url('/assets/header-asset.png') center 40% / cover no-repeat;
+  transform: scale(1.04);
+}
+
+/* Dark overlay — heavier than the main hero for better text contrast */
+.heroOverlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to right, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.55) 60%, rgba(0,0,0,0.15) 100%),
+    linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.5) 100%);
+}
+
+.heroContent {
+  position: relative;
+  z-index: 2;
+  max-width: 620px;
+  animation: fadeUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Badge pill */
+.heroBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.65);
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.12);
+  padding: 6px 14px;
+  border-radius: 100px;
+  margin-bottom: 24px;
+  letter-spacing: 0.02em;
+}
+
+.badgeDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #22c55e;
+  flex-shrink: 0;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.35; }
+}
+
+/* Title */
+.heroTitle {
+  font-family: var(--font-heading);
+  font-size: clamp(48px, 7vw, 84px);
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: -0.03em;
+  line-height: 1.04;
+  margin-bottom: 20px;
+}
+
+.heroAccent { color: var(--orange); }
+
+/* Subtitle */
+.heroSub {
+  font-size: 16px;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.7;
+  max-width: 420px;
+  margin-bottom: 32px;
+}
+
+/* Tag chips inside hero */
+.heroTags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.heroTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 7px 16px;
+  border-radius: 100px;
+  border: 1.5px solid rgba(255,255,255,0.18);
+  background: rgba(255,255,255,0.06);
+  color: rgba(255,255,255,0.7);
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+  transition: border-color 0.18s, background 0.18s, color 0.18s;
+}
+.heroTag:hover {
+  border-color: rgba(255,255,255,0.45);
+  color: var(--white);
+  background: rgba(255,255,255,0.1);
+}
+.heroTag.heroTagActive {
+  border-color: var(--orange);
+  background: rgba(232,100,58,0.18);
+  color: var(--orange);
+}
+
+/* ── Browse section ────────────────────────────────────────── */
+.browse {
+  padding: 52px 48px 80px;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+/* Controls */
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.controlsLeft {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.browseTitle {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--black);
+}
+
+.clearBtn {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--gray-600);
+  background: var(--gray-100);
+  border: none;
+  padding: 5px 12px;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+.clearBtn:hover { background: var(--gray-200); color: var(--black); }
+
+.sortSelect {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 500;
+  padding: 8px 14px;
+  border: 1.5px solid var(--gray-200);
+  border-radius: var(--radius-sm);
+  background: var(--white);
+  color: var(--black);
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.15s;
+}
+.sortSelect:focus { border-color: var(--orange); }
+
+/* Tag chips */
+.tagBar {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 32px;
+}
+
+.tagChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 6px 16px;
+  border-radius: 100px;
+  border: 1.5px solid var(--gray-200);
+  background: var(--white);
+  color: var(--gray-600);
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s, background 0.15s;
+}
+.tagChip:hover { border-color: var(--gray-400); color: var(--black); }
+.tagChip.tagActive {
+  border-color: var(--orange);
+  color: var(--orange);
+  background: var(--orange-light);
+}
+
+/* Grid */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 48px;
+}
+
+.skelCard {
+  background: #F4F4F2;
+  border-radius: 18px;
+  padding: 22px;
+}
+
+/* Empty state */
+.empty {
+  text-align: center;
+  padding: 80px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+.emptyIcon { font-size: 40px; }
+.emptyText { font-size: 15px; color: var(--gray-600); }
+
+/* Pagination */
+.pagination {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 48px;
+}
+
+.pageBtn {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  border: 1.5px solid var(--gray-200);
+  background: var(--white);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--gray-600);
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s;
+}
+.pageBtn:hover { border-color: var(--orange); color: var(--orange); }
+.pageBtnActive {
+  background: var(--orange);
+  border-color: var(--orange);
+  color: var(--white);
+}
+
+/* ── Responsive ─────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .hero   { padding: 100px 24px 64px; min-height: 48vh; }
+  .browse { padding: 36px 24px 60px; }
+  .controls { flex-direction: column; align-items: flex-start; }
+  .grid { grid-template-columns: 1fr; }
+}

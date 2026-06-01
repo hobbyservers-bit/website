@@ -1,0 +1,119 @@
+.section {
+  padding: 80px 0 88px;
+  background: var(--white);
+}
+
+/* ── Header ──────────────────────────────────────────── */
+.header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 0 32px;
+  max-width: 1280px;
+  margin: 0 auto 32px;
+}
+
+.title {
+  font-family: var(--font-heading);
+  font-size: clamp(32px, 4vw, 52px);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--black);
+  line-height: 1.1;
+  margin-bottom: 10px;
+}
+
+.sub {
+  font-size: 15px;
+  color: var(--gray-400);
+  font-weight: 400;
+}
+
+/* ── Arrows ──────────────────────────────────────────── */
+.arrows {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  margin-bottom: 4px; /* align with title baseline */
+}
+
+/* Left arrow: plain gray circle */
+.arrowCircle {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1.5px solid #D8D8D5;
+  background: transparent;
+  color: #999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: border-color 0.18s, color 0.18s, background 0.18s;
+  flex-shrink: 0;
+}
+.arrowCircle:hover {
+  border-color: #aaa;
+  color: #555;
+  background: #F4F4F2;
+}
+
+/* Right arrow: black pill / stadium */
+.arrowPill {
+  width: 96px;
+  height: 48px;
+  border-radius: 100px;
+  border: 2px solid var(--black);
+  background: transparent;
+  color: var(--black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.18s, color 0.18s;
+  flex-shrink: 0;
+}
+.arrowPill:hover {
+  background: var(--black);
+  color: var(--white);
+}
+
+/* ── Card track ──────────────────────────────────────── */
+.track {
+  display: flex;
+  gap: 14px;
+  overflow-x: auto;
+  /* Left edge matches the centered header (max-width 1280px + 32px gutter).
+     max() falls back to 32px on screens narrower than 1280px.            */
+  padding-top: 6px;
+  padding-bottom: 16px;
+  padding-left: max(32px, calc((100vw - 1280px) / 2 + 32px));
+  padding-right: 32px;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.track::-webkit-scrollbar { display: none; }
+.track > * { scroll-snap-align: start; }
+
+/* ── Skeleton card ───────────────────────────────────── */
+.skelCard {
+  background: #F4F4F2;
+  border-radius: 18px;
+  padding: 22px;
+  flex-shrink: 0;
+  width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.skelTop   { height: 36px; border-radius: 10px; }
+.skelLine  { height: 14px; border-radius: 7px; }
+.skelShort { width: 55%; }
+.skelAddr  { height: 38px; border-radius: 10px; margin-top: 4px; }
+
+@media (max-width: 640px) {
+  .header { padding: 0 20px; }
+  .track  { padding: 6px 20px 16px; }
+}
