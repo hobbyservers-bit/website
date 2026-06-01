@@ -9,7 +9,6 @@ const SORT_OPTIONS = [
   { value: 'newest',  label: 'Newest First' },
 ];
 
-/* Map tag names → Font Awesome icon classes */
 const TAG_ICONS = {
   smp:             'fa-solid fa-shield-halved',
   creative:        'fa-solid fa-paintbrush',
@@ -42,6 +41,7 @@ export default function Servers() {
   const servers = serversData?.data ?? [];
   const tags    = tagsData?.data    ?? [];
   const total   = serversData?.total ?? 0;
+  const online  = servers.filter(s => s.status === 'ONLINE' || s.status === 'STARTING').length;
   const pages   = Math.ceil(total / 12);
 
   const [bodyRef, bodyIn] = useInView();
@@ -60,10 +60,6 @@ export default function Servers() {
         <div className={styles.heroOverlay} />
 
         <div className={styles.heroContent}>
-          <div className={styles.heroBadge}>
-            <span className={styles.badgeDot} />
-            {total > 0 ? `${total} servers live` : 'Servers live'}
-          </div>
 
           <h1 className={styles.heroTitle}>
             Find your<br />
@@ -71,9 +67,37 @@ export default function Servers() {
           </h1>
 
           <p className={styles.heroSub}>
-            Browse community-run Minecraft servers — survival, creative,
-            minigames, modded, and more.
+            HobbyServers hosts community-run Minecraft servers — all free to join.
+            Browse, filter by type, and jump straight in.
           </p>
+
+          {/* Stats row */}
+          <div className={styles.heroStats}>
+            <div className={styles.heroStat}>
+              <span className={styles.heroStatNum}>
+                {total > 0 ? total : '—'}
+              </span>
+              <span className={styles.heroStatLabel}>
+                <i className="fa-solid fa-server" style={{ fontSize: 11 }} /> Servers listed
+              </span>
+            </div>
+            <div className={styles.heroStatDivider} />
+            <div className={styles.heroStat}>
+              <span className={styles.heroStatNum} style={{ color: '#22c55e' }}>
+                {total > 0 ? online : '—'}
+              </span>
+              <span className={styles.heroStatLabel}>
+                <i className="fa-solid fa-circle" style={{ fontSize: 8, color: '#22c55e' }} /> Online now
+              </span>
+            </div>
+            <div className={styles.heroStatDivider} />
+            <div className={styles.heroStat}>
+              <span className={styles.heroStatNum}>Free</span>
+              <span className={styles.heroStatLabel}>
+                <i className="fa-solid fa-star" style={{ fontSize: 11 }} /> Always
+              </span>
+            </div>
+          </div>
 
           {/* Quick-filter tags in hero */}
           {tags.length > 0 && (
@@ -93,10 +117,32 @@ export default function Servers() {
         </div>
       </div>
 
+      {/* ── About strip ───────────────────────────────────── */}
+      <div className={styles.aboutStrip}>
+        <div className={styles.aboutItem}>
+          <i className="fa-solid fa-bolt" />
+          <span><strong>Instant join</strong> — connect via Minecraft multiplayer, no downloads</span>
+        </div>
+        <div className={styles.aboutDivider} />
+        <div className={styles.aboutItem}>
+          <i className="fa-solid fa-shield-halved" />
+          <span><strong>DDoS protected</strong> — every server on our network</span>
+        </div>
+        <div className={styles.aboutDivider} />
+        <div className={styles.aboutItem}>
+          <i className="fa-solid fa-rotate" />
+          <span><strong>Daily backups</strong> — your world is always safe</span>
+        </div>
+        <div className={styles.aboutDivider} />
+        <div className={styles.aboutItem}>
+          <i className="fa-solid fa-circle-plus" />
+          <span><strong>Host yours free</strong> — create a server at dash.hobbyservers.com</span>
+        </div>
+      </div>
+
       {/* ── Browse section ────────────────────────────────── */}
       <section className={styles.browse} ref={bodyRef}>
 
-        {/* Controls */}
         <div className={`${styles.controls} reveal ${bodyIn ? 'visible' : ''}`}>
           <div className={styles.controlsLeft}>
             <h2 className={styles.browseTitle}>
@@ -119,7 +165,6 @@ export default function Servers() {
           </select>
         </div>
 
-        {/* Tag chips */}
         <div className={`${styles.tagBar} reveal reveal-delay-1 ${bodyIn ? 'visible' : ''}`}>
           <button
             className={`${styles.tagChip} ${!tag ? styles.tagActive : ''}`}
@@ -139,7 +184,6 @@ export default function Servers() {
           ))}
         </div>
 
-        {/* Grid */}
         {loading ? (
           <div className={styles.grid}>
             {Array.from({ length: 8 }).map((_, i) => (
@@ -163,7 +207,6 @@ export default function Servers() {
           </div>
         )}
 
-        {/* Pagination */}
         {pages > 1 && (
           <div className={styles.pagination}>
             {Array.from({ length: pages }, (_, i) => i + 1).map(p => (
