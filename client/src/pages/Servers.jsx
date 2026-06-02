@@ -40,8 +40,8 @@ export default function Servers() {
 
   const servers = serversData?.data ?? [];
   const tags    = tagsData?.data    ?? [];
-  const total   = serversData?.total ?? 0;
-  const online  = servers.filter(s => s.status === 'ONLINE' || s.status === 'STARTING').length;
+  const total        = serversData?.total ?? 0;
+  const playersOnline = servers.reduce((sum, s) => sum + (s.rating_positive ?? 0), 0);
   const pages   = Math.ceil(total / 12);
 
   const [bodyRef, bodyIn] = useInView();
@@ -84,10 +84,10 @@ export default function Servers() {
             <div className={styles.heroStatDivider} />
             <div className={styles.heroStat}>
               <span className={styles.heroStatNum} style={{ color: '#22c55e' }}>
-                {total > 0 ? online : '—'}
+                {playersOnline > 0 ? playersOnline.toLocaleString() : '—'}
               </span>
               <span className={styles.heroStatLabel}>
-                <i className="fa-solid fa-circle" style={{ fontSize: 8, color: '#22c55e' }} /> Online now
+                <i className="fa-solid fa-users" style={{ fontSize: 11, color: '#22c55e' }} /> Players online
               </span>
             </div>
             <div className={styles.heroStatDivider} />
@@ -114,29 +114,6 @@ export default function Servers() {
               ))}
             </div>
           )}
-        </div>
-      </div>
-
-      {/* ── About strip ───────────────────────────────────── */}
-      <div className={styles.aboutStrip}>
-        <div className={styles.aboutItem}>
-          <i className="fa-solid fa-bolt" />
-          <span><strong>Instant join</strong> — connect via Minecraft multiplayer, no downloads</span>
-        </div>
-        <div className={styles.aboutDivider} />
-        <div className={styles.aboutItem}>
-          <i className="fa-solid fa-shield-halved" />
-          <span><strong>DDoS protected</strong> — every server on our network</span>
-        </div>
-        <div className={styles.aboutDivider} />
-        <div className={styles.aboutItem}>
-          <i className="fa-solid fa-rotate" />
-          <span><strong>Daily backups</strong> — your world is always safe</span>
-        </div>
-        <div className={styles.aboutDivider} />
-        <div className={styles.aboutItem}>
-          <i className="fa-solid fa-circle-plus" />
-          <span><strong>Host yours free</strong> — create a server at dash.hobbyservers.com</span>
         </div>
       </div>
 

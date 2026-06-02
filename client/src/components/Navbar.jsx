@@ -37,7 +37,7 @@ export default function Navbar() {
 
         {/* Desktop actions */}
         <div className={styles.actions}>
-          <button className="btn btn-ghost">Sign In</button>
+          <a href="https://dash.hobbyservers.com" target="_blank" rel="noopener noreferrer" className="btn btn-ghost">Sign In</a>
           <a href="https://dash.hobbyservers.com" target="_blank" rel="noopener noreferrer" className="btn btn-orange btn-sm">Start Your Server</a>
         </div>
 

@@ -4,7 +4,10 @@
   min-height: 54vh;
   display: flex;
   align-items: center;
-  padding: 120px 48px 80px;
+  padding-top: 120px;
+  padding-bottom: 80px;
+  padding-left:  max(48px, calc((100vw - 1200px) / 2 + 24px));
+  padding-right: max(48px, calc((100vw - 1200px) / 2 + 24px));
   overflow: hidden;
 }
 
@@ -29,6 +32,9 @@
   position: relative;
   z-index: 2;
   max-width: 620px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   animation: fadeUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
@@ -104,7 +110,10 @@
 .aboutStrip {
   background: var(--off-white);
   border-bottom: 1px solid var(--gray-200);
-  padding: 20px 48px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left:  max(48px, calc((100vw - 1200px) / 2 + 24px));
+  padding-right: max(48px, calc((100vw - 1200px) / 2 + 24px));
   display: flex;
   align-items: center;
   gap: 0;
@@ -311,9 +320,16 @@
 }
 
 /* ── Responsive ─────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .heroContent  { text-align: center; align-items: center; }
+  .heroSub      { margin-left: auto; margin-right: auto; }
+  .heroStats    { justify-content: center; }
+  .heroTags     { justify-content: center; }
+}
+
 @media (max-width: 768px) {
-  .hero   { padding: 100px 24px 64px; min-height: 48vh; }
-  .browse { padding: 36px 24px 60px; }
+  .hero     { padding: 100px 24px 64px; min-height: 48vh; justify-content: center; }
+  .browse   { padding: 36px 24px 60px; }
   .controls { flex-direction: column; align-items: flex-start; }
-  .grid { grid-template-columns: 1fr; }
+  .grid     { grid-template-columns: 1fr; }
 }
